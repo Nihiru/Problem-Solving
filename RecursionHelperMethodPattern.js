@@ -34,3 +34,25 @@ function collectOddsValue(arr){
 }
 
 console.log(collectOddsValue([1,2,3,4,5,6,7,8]))
+
+
+/**
+ * Pure functions are self-contained, avoid using external data structure, recursive
+ * @param {Array} arr 
+ */
+function collectOddValues(arr){
+    let newArr = []
+    if(arr.length === 0){
+        return newArr
+    }
+    if(arr[0] %2 !== 0){
+        newArr.push(arr[0])
+    }
+
+    newArr = newArr.concat(collectOddValues(arr.slice(1)))
+    return newArr
+
+
+}
+
+console.log(collectOddValues([11,12,13,14,15,16,17,18,19,20]))
