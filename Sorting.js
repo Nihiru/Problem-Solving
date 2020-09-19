@@ -50,3 +50,20 @@ function countSwaps(arr){
 }
 
 countSwaps([8,1,2,3,4,5,6,7])
+
+
+function markAndToys(arr, target){
+    let countOfToys = 0;
+    let toysCost = 0;
+    let afterSorting = insertionSort(arr);
+    for(var i=0;i<afterSorting.length;i++){
+       toysCost += afterSorting[i] 
+       if(toysCost > target) break;
+       else countOfToys++;
+
+    }
+
+    return countOfToys;
+}
+
+console.log(markAndToys([1,12,5,111,200,1000,10], 50))
