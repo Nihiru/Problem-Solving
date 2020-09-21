@@ -68,12 +68,16 @@ function markAndToys(arr, target){
 
 console.log(markAndToys([1,12,5,111,200,1000,10], 50))
 
-// Merge sort 
+/**
+ * Merge sort
+ * time complexity  - O(n * log n) where `n` stands for comparisons made and `log n` bounds the dividing array to the last 1 element
+ * */ 
+
 
 /**
  * Function to merge two sorted arrays of varying length
- * @param {Array} arr1 
- * @param {Array} arr2 
+ * @param {Array} arr1 - left hand side of the divided array
+ * @param {Array} arr2 - right hand side of the divided array
  */
 function merge(arr1, arr2){
     let results = []
@@ -104,5 +108,20 @@ function merge(arr1, arr2){
     return results
 }
 
-// console.log(merge([7,34,72,86,3423,9552,],[3,5,577,5446,58754,60000,61200]));
+console.log(merge([7,34,72,86,3423,9552,],[3,5,577,5446,58754,60000,61200]));
 console.log(merge([],[1,2,4]))
+
+/**
+ * @param {Array} arr - A series of unsorted numerical elements 
+ * @description - Perform merge sort on an unordered set of data, recursive function to handle the dividing of an array 
+ */
+function mergeSort(arr){
+    if(arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0,mid));
+    let right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}
+
+console.log(mergeSort([10,9,8,7,6,5,4,3,22,1]))
