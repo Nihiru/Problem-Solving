@@ -70,7 +70,8 @@ console.log(markAndToys([1,12,5,111,200,1000,10], 50))
 
 /**
  * Merge sort
- * time complexity  - O(n * log n) where `n` stands for comparisons made and `log n` bounds the dividing array to the last 1 element
+ * Time complexity  - O(n * log n) where `n` stands for comparisons made and `log n` bounds the dividing array to the last 1 element
+ * Space complexity - O(n)
  * */ 
 
 
