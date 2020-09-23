@@ -126,3 +126,29 @@ function mergeSort(arr){
 }
 
 console.log(mergeSort([10,9,8,7,6,5,4,3,22,1]))
+
+/**
+ * Quick sort
+ * -) Ideally, the pivot should be choosen so that's it roughly the median value in the data you're sorting
+ */
+
+function pivot(arr, start=0, end=arr.length+1){
+    // selecting the first position in the array as pivot
+    function swap(arr, i, j){
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    let pivotElement = arr[start];
+    let swapIdx = start;
+    for(var i= start +  1; i< arr.length;i++){
+        if(pivot > arr[i]){
+            swapIdx++;
+            swap(arr, swapIdx, i)
+        }
+    }
+    swap(arr, start, swapIdx);
+    console.log(arr);
+    return swapIdx;
+}
