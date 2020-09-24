@@ -130,20 +130,29 @@ console.log(mergeSort([10,9,8,7,6,5,4,3,22,1]))
 /**
  * Quick sort
  * -) Ideally, the pivot should be choosen so that's it roughly the median value in the data you're sorting
+ * @@param {Array} arr
+ * @param {number} start
+ * @param {number} end
+ * @returns {number} swapIdx describes the index position of the pivot element
  */
 
 function pivot(arr, start=0, end=arr.length+1){
     // selecting the first position in the array as pivot
-    function swap(arr, i, j){
-        var temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
+    // function swap(arr, i, j){
+    //     var temp = arr[i];
+    //     arr[i] = arr[j];
+    //     arr[j] = temp;
+    // }
     
+    // ES2015 syntax
+    const swap = (arr, idx1, idx2) => {
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+    }
+
     let pivotElement = arr[start];
     let swapIdx = start;
     for(var i= start +  1; i< arr.length;i++){
-        if(pivot > arr[i]){
+        if(pivotElement > arr[i]){
             swapIdx++;
             swap(arr, swapIdx, i)
         }
@@ -152,3 +161,22 @@ function pivot(arr, start=0, end=arr.length+1){
     console.log(arr);
     return swapIdx;
 }
+
+
+/**
+ * Recursive function to calculate pivot and sort the elements from its left side and right
+ * @param {Array} arr - An array of unsorted numbers
+ * @param {number} left - starting position of the array
+ * @param {number} right - ending position of the array
+ * @returns {Array} arr - Modified original array to sorte array
+ */
+function quickSort(arr, left =0, right =arr.length -1){
+    //  Base condition 
+    if(left < right){
+        let pivotIndex = pivot(arr, left, right);
+        quickSort(arr, left, pivotIndex-1)
+        quickSort(arr, pivotIndex+1, right);
+    }
+    return arr
+}
+console.log(quickSort([4,2,8,6,7,1,3]))
