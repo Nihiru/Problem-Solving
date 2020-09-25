@@ -180,3 +180,59 @@ function quickSort(arr, left =0, right =arr.length -1){
     return arr
 }
 console.log(quickSort([4,2,8,6,7,1,3]))
+
+/**
+ * Radix sort
+ * -) Usually comparsion between elements is performed while sorting, radix sort bypasses it
+ * -) buckets are vital for radix sort
+ * -) base10 is used to get individual integers
+ */
+
+ /**
+  * Function to retrieve individual numbers from their respective positions such as units, tens, thousands...
+  * @param {number} num - number upon which units, tens, hundreds, thousands... are to be derived
+  * @param {number} i - base10 representation 
+  */
+ function getDigit(num, i){
+     return Math.floor(Math.abs(num) / Math.pow(10,i)) % 10;
+ }
+
+ /**
+  * Function to get the count of digits in a number
+  * @param {number} num - integer upon which the count of digits needs to be calculated
+  */
+ function digitCount(num){
+     if(num === 0) return 1;
+     return Math.floor(Math.log10(Math.abs(num)))+ 1
+ }
+
+/**
+ * Function to get the largest digit count from a sequence of integers at a given instance
+ * @param {Array} arr - An array of integers
+ */
+ function mostDigit(arr){
+     let maxDigits = 0;
+     for(let i=0;i<arr.length;i++){
+         return Math.max(maxDigits, digitCount(arr[i]))
+     }
+ }
+/**
+ * Function to sort integers using radix sort
+ * @param {Array} arr - sequence of integers
+ * @returns {Array}  arr - Sorted array
+ */
+
+function radixSort(arr){
+    let maxiNum =mostDigit(arr);
+
+    for(let k=0; k<maxiNum;k++){
+        let buckets = Array.from({length: 10}, () => [])
+        for(let i=0;i<arr.length;i++){
+            buckets[getDigit(arr[i], k)].push(arr[i])
+        }
+        arr = [].concat(...buckets)
+    }
+    return arr
+}
+
+console.log(radixSort([1,564,2,67,82,8,25,10,11]))
