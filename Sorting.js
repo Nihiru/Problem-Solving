@@ -203,6 +203,7 @@ console.log(quickSort([4,2,8,6,7,1,3]))
   */
  function digitCount(num){
      if(num === 0) return 1;
+     // get the number of number of digits present in the integer
      return Math.floor(Math.log10(Math.abs(num)))+ 1
  }
 
@@ -213,8 +214,9 @@ console.log(quickSort([4,2,8,6,7,1,3]))
  function mostDigit(arr){
      let maxDigits = 0;
      for(let i=0;i<arr.length;i++){
-         return Math.max(maxDigits, digitCount(arr[i]))
+         maxDigits = Math.max(maxDigits, digitCount(arr[i]))
      }
+     return maxDigits
  }
 /**
  * Function to sort integers using radix sort
@@ -226,11 +228,12 @@ function radixSort(arr){
     let maxiNum =mostDigit(arr);
 
     for(let k=0; k<maxiNum;k++){
+        // Re-initalization of the entire array
         let buckets = Array.from({length: 10}, () => [])
         for(let i=0;i<arr.length;i++){
             buckets[getDigit(arr[i], k)].push(arr[i])
         }
-        arr = [].concat(...buckets)
+        arr = [].concat(...buckets)// ordering is done here and accessing is done in the loop, debug to see the output
     }
     return arr
 }
