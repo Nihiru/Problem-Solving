@@ -53,6 +53,22 @@ class SinglyLinkedList{
         return `shifted element ${current.value}`;
 
     }
+
+    unshift(val){
+        var newNode = new Node(val);
+
+        if(!this.head){
+            this.head = this.tail = newNode;
+        } else {
+            newNode.next = this.head
+        this.head = newNode
+        }
+        
+        this.length++;
+        return `unshifted element ${val}`
+    }
+
+
     getListLength(){
         return this.length
     }
@@ -88,5 +104,5 @@ console.log(list.shift())
 console.log(list.traverse());
 console.log(list.shift())
 console.log(list.traverse());
-console.log(list.shift())
+console.log(list.unshift(25))
 console.log(list.traverse());
