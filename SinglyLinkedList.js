@@ -12,7 +12,7 @@ class SinglyLinkedList{
     }
 
     push(val){
-        var newNode = new Node(val);
+        let newNode = new Node(val);
         if(!this.head){
             this.head = this.tail = newNode;
         } else {
@@ -27,8 +27,8 @@ class SinglyLinkedList{
         if(!this.head){
             return "Empty list";
         }
-        var current = this.head;
-        var newTail = current;
+        let current = this.head;
+        let newTail = current;
         while(current.next){
             newTail = current;
             current = current.next;
@@ -46,7 +46,7 @@ class SinglyLinkedList{
         if(!this.head){
             return "Empty list";
         }
-        var current = this.head;
+        let current = this.head;
         this.head = current.next;
         current.next = null;
         this.length--;
@@ -55,7 +55,7 @@ class SinglyLinkedList{
     }
 
     unshift(val){
-        var newNode = new Node(val);
+        let newNode = new Node(val);
 
         if(!this.head){
             this.head = this.tail = newNode;
@@ -68,13 +68,53 @@ class SinglyLinkedList{
         return `unshifted element ${val}`
     }
 
+    get(position){
+        var index = position -1;
+        if(index > this.length-1 || index < 0){
+            return null;
+        }
+        let current = -1;
+        let temp = this.head
+        while(current < index){
+            temp = temp.next;
+            current++;
+        }
+        return temp;
+    }
+
+    set(position, value){
+    
+        let foundNode = this.get(position);
+        if(foundNode){
+            foundNode.value = value;
+            return true;
+        }
+        return false;
+    }
+
+    insert(position, value){
+        let foundNode = this.get(position);
+        let newNode = new Node(value);
+        if(foundNode){
+            newNode.next = foundNode.next;
+            foundNode.next = newNode;
+            return `Inserted succesfully`
+        }
+        if(position >= this.length){
+            this.push(value);
+        } else {
+            this.unshift(value);
+        }
+        this.length++;
+        return 
+    }
 
     getListLength(){
         return this.length
     }
 
     traverse(){
-        var temp  = this.head;
+        let temp  = this.head;
         if(!this.head){
             return "Nothing to display";
         }
@@ -87,7 +127,7 @@ class SinglyLinkedList{
 
 }
 
-var list = new SinglyLinkedList();
+let list = new SinglyLinkedList();
 list.push(10)
 list.push(20)
 list.push(30)
@@ -105,4 +145,12 @@ console.log(list.traverse());
 console.log(list.shift())
 console.log(list.traverse());
 console.log(list.unshift(25))
+console.log(list.traverse());
+console.log(list.push(15));console.log(list.push(25));console.log(list.push(35));console.log(list.push(45));
+console.log(list.get(4));
+console.log(list.set(4, 'Hello World'));
+console.log(list.traverse());
+console.log(list.insert(-1, "Beginning"));
+console.log(list.insert(3, 'In the middle'));
+console.log(list.insert(list.getListLength()+1, 'The End'));
 console.log(list.traverse());
