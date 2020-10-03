@@ -69,10 +69,10 @@ class SinglyLinkedList{
     }
 
     get(position){
-        if(position >= this.length|| position <= 0){
+        if(position >= this.length|| position < 0){
             return null;
         }
-        let current = 1;
+        let current = 0;
         let temp = this.head
         while(current < position){
             temp = temp.next;
@@ -109,26 +109,43 @@ class SinglyLinkedList{
     }
 
     remove(position=1){
-        if(position <= 0 || position >= this.length){
+        var index = position - 1
+        if(index < 0 || index >= this.length){
             return `Cannot remove item with given ${position}`
         }
 
-        if(position === this.length - 1){
+        if(index === this.length - 1){
             return this.pop();
         }
 
-        if(position === 0){
+        if(index === 0){
             return this.shift();
         }
-
-        var removedNode = this.get(position);
-        var nextNode = removedNode.next;
-        removedNode.next = null;
-        if(position === 1){
-            this.head = nextNode;
-        }
+        var previousNode = this.get(index - 1);
+        var removedNode = previousNode.next;
+        previousNode.next = removedNode.next
+        // removedNode.next = null;
+        // if(position === 1){
+        //     this.head = nextNode;
+        // }
         this.length--;
         return `Removed node is ${removedNode.value}`
+    }
+
+    reverse(){
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        var prev = null;
+        var next;
+        for(var i=0;i< this.length -1;i++){
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
     }
 
     getListLength(){
@@ -156,7 +173,7 @@ list.push(30)
 console.log(list.traverse());
 console.log(list.pop());console.log(list.pop());console.log(list.pop());console.log(list.pop())
 console.log(list.traverse());
-console.log(list.push(15));console.log(list.push(25));console.log(list.push(35));console.log(list.push(45));
+console.log(list.push(15));console.log(list.push(20));console.log(list.push(30));console.log(list.push(40));
 console.log(list.traverse());
 console.log(list.shift());
 console.log(list.traverse());
@@ -168,7 +185,7 @@ console.log(list.shift())
 console.log(list.traverse());
 console.log(list.unshift(25))
 console.log(list.traverse());
-console.log(list.push(15));console.log(list.push(25));console.log(list.push(35));console.log(list.push(45));
+console.log(list.push(10));console.log(list.push(20));console.log(list.push(30));console.log(list.push(40));
 console.log(list.get(4));
 console.log(list.set(4, 'Hello World'));
 console.log(list.traverse());
@@ -177,4 +194,10 @@ console.log(list.insert(3, '3rd Position'));
 console.log(list.insert(list.getListLength()+1, 'The End'));
 console.log(list.traverse());
 console.log(list.remove())
+console.log(list.traverse())
+console.log(list.remove(3))
+console.log(list.traverse())
+console.log(list.remove(3))
+console.log(list.traverse())
+console.log(list.reverse())
 console.log(list.traverse())
