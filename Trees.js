@@ -39,8 +39,25 @@ class BST{
        }
     }
 
-    print(){
-
+    find(val){
+        if(this.root === null){
+            return null;
+        } else {
+            var current = this.root;
+            while(true){
+                if(current  !== null ){
+                    if(val === current.value) 
+                        return 'Element Found';
+                    else if(val < current.value) {
+                        current = current.left;
+                    } else {
+                        current = current.right;
+                    } 
+                } else {
+                    return "Element Not found";
+                }
+            }
+        }
     }
 }
 
@@ -51,3 +68,6 @@ tree.insert(2);
 tree.insert(24);
 tree.insert(40);
 tree.insert(23);
+console.log(tree.find(1));
+console.log(tree.find(10));
+console.log(tree.find(40));
