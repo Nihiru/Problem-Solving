@@ -27,13 +27,41 @@ class HashTable {
         let index = this._hash(key)
         let found = 0
         if (this.keyMap[index]) {
-            for (let i=0 ; i<this.keyMap[index].length;i++) {
+            for (let i = 0; i < this.keyMap[index].length; i++) {
                 if (this.keyMap[index][i][0] === key) {
                     return this.keyMap[index][i]
                 }
             }
         }
         return undefined
+    }
+
+    values() {
+        let valuesArr = [];
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (let j = 0; j < this.keyMap[i].length; j++) {
+                    if (!valuesArr.includes(this.keyMap[i][j][1])) {
+                        valuesArr.push(this.keyMap[i][j][1])
+                    }
+                }
+            }
+        }
+        return valuesArr
+    }
+
+    keys() {
+        let keysArr = [];
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (let j = 0; j < this.keyMap[i].length; j++) {
+                    if (!keysArr.includes(this.keyMap[i][j][0])) {
+                        keysArr.push(this.keyMap[i][j][0])
+                    }
+                }
+            }
+        }
+        return keysArr
     }
 
     print() {
@@ -46,9 +74,12 @@ let ht = new HashTable();
 ht.set('maroon', '#800000')
 ht.set('yellow', '#FFFF00')
 ht.set('olive', '#808000')
-ht.set('salmon', '#FA8072')
+ht.set('salmon', '#FA8072') 
 ht.set('mediumvioletred', '#C71585')
+ht.set('orange', '#C71585')
 console.log(ht.get('yellow'))
 console.log(ht.get('polive'))
 console.log(ht.get('olive'))
+console.log(ht.values())
+console.log(ht.keys())
 ht.print()
