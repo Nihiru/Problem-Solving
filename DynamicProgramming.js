@@ -24,7 +24,8 @@ const lib = (n) => {
  * 
  * @param {int} n 
  * @description there is a limit on the number of stack frames being used 
- * to solve this memoization is used where patterns are identified and reused in other parts of the a
+ * to solve this memoization is used where patterns are identified and reused in other parts of
+ * the problem
  */
 
 const fib = (n, memo = {}) => {
@@ -40,3 +41,30 @@ const fib = (n, memo = {}) => {
 }
 
 console.log(fib(50))
+
+/**
+ * Grid Traveller
+ * say that you're a traveller on 2D grid. You begin in the top left corner and your goal is to travel
+ * to the bottom right corner. You may only move down or right.
+ * m defines taking down side 
+ * n defines taking right side
+ */
+
+const gridTraveller = (m, n) => {
+	// if 1x1 grid exists then there is no way to travel and return "Do Nothing" / "Zero" 
+	if (m === 0 || n === 0) return 0;
+	if (m === 1 && n === 1) return 1;
+	/**
+	 * Time complexity:
+	 * Since each call to function depeneds on reducing 1 from either m or n. This yeilds to n+m
+	 * As the call to function segregates in to 2 branches i.e, Binary tree this gives us O(2^(n+m))
+	 * 
+	 * Space complexity:
+	 * It depends on the height of the tree i.e, n+m
+	 */
+	return gridTraveller(m - 1, n) + gridTraveller(m, n - 1)
+}
+
+console.log(gridTraveller(2, 3))
+console.log(gridTraveller(5, 5))
+console.log(gridTraveller(18, 18)) // this would either crash or result in longer execution time
