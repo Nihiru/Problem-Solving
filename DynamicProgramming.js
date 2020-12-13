@@ -50,21 +50,41 @@ console.log(fib(50))
  * n defines taking right side
  */
 
-const gridTraveller = (m, n) => {
+const gridTraveller = (m, n, memo = {}) => {
+	// Implementing memoization to identify reoccuring patterns along the way
+	const key = m + '-' + n;
+
+	/**
+	 * find the key in memoization object
+	 * here memoization concept is implemented through shared object that is propagated across function calls
+	 *  */
+
+	if (key in memo) return memo[key]
+
 	// if 1x1 grid exists then there is no way to travel and return "Do Nothing" / "Zero" 
 	if (m === 0 || n === 0) return 0;
 	if (m === 1 && n === 1) return 1;
 	/**
+	 * (Brute force)
 	 * Time complexity:
 	 * Since each call to function depeneds on reducing 1 from either m or n. This yeilds to n+m
 	 * As the call to function segregates in to 2 branches i.e, Binary tree this gives us O(2^(n+m))
 	 * 
 	 * Space complexity:
 	 * It depends on the height of the tree i.e, n+m
+	 * 
+	 * (Efficient - Memoization)
+	 * Time complexity:
+	 * m * n -  m doesn't grow beyond m i.e, {0,...,m} and for same goes for n i.e, {0,...,n}
+	 * 0 is base case as it travels all the way to 0 and then comes back to parent
+	 * 
+	 * Space complexity:
+	 * Same as above
 	 */
-	return gridTraveller(m - 1, n) + gridTraveller(m, n - 1)
+	memo[key] = gridTraveller(m - 1, n, memo) + gridTraveller(m, n - 1, memo)
+	return memo[key]
 }
 
 console.log(gridTraveller(2, 3))
 console.log(gridTraveller(5, 5))
-console.log(gridTraveller(18, 18)) // this would either crash or result in longer execution time
+console.log(gridTraveller(18, 18)) // this would either crash or result in longer execution time if brute force used
