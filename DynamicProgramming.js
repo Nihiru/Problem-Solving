@@ -88,9 +88,34 @@ class DynamicProgramming {
 		}
 		console.log(grid(m, n))
 	}
+	/**
+	 * 
+	 * @param {Number} tagetSum traget to be achieved from the set of arrays 
+	 * @param {Number} numbers series of elements 
+	 * @description
+	 * describe complexity 
+	 * - brute force approach
+	 * 		-since the problem is represented in tree structure
+	 *  	-to analyse time compelxity
+	 * 		-inputs to function is considered m is targetSum and n is array length and these have an 
+	 * 		 effect on the dimensions of the tree
+	 *  	-height of the tree can be calculated as maximum distance root of the tree to the farthest leaf
+	 * 		-in worst case tree is reduced by 1 at each level. thereby, height of the tree is m, number of nodes
+	 * 		 changing from one level to another defining through notations
+	 * 		-maximum branching factor depends on elements of array i.e, n
+	 * 		-time complexity is O(n^m) , space complexity is O(m) i.e, height of the tree is 'm' 
+	 * 		
+	 */
+	canSum(targetSum, numbers) {
+		if (targetSum === 0) return true;
 
-	canSum(tagetSum, numbers) {
+		if (targetSum < 0) return false;
 
+		for (let num of numbers) {
+			if (this.canSum(targetSum - num, numbers) === true)
+				return true
+		}
+		return false;
 	}
 }
 
@@ -111,8 +136,9 @@ function start(input) {
 
 		case 3:
 			console.log('canSum')
-			dp.canSum();
-			break
+			console.log(dp.canSum(7, [2, 4]))
+			console.log(dp.canSum(7, [7, 4, 2]))
+			break;
 
 		default:
 			console.log('Invalid choice')
@@ -120,4 +146,4 @@ function start(input) {
 	}
 }
 
-start(2)
+start(3)
