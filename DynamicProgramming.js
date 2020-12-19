@@ -99,22 +99,28 @@ class DynamicProgramming {
 	 *  	-to analyse time compelxity
 	 * 		-inputs to function is considered m is targetSum and n is array length and these have an 
 	 * 		 effect on the dimensions of the tree
-	 *  	-height of the tree can be calculated as maximum distance root of the tree to the farthest leaf
+	 *  	-height of the tree can be calculated as maximum distance from root of the tree to the farthest leaf
 	 * 		-in worst case tree is reduced by 1 at each level. thereby, height of the tree is m, number of nodes
 	 * 		 changing from one level to another defining through notations
 	 * 		-maximum branching factor depends on elements of array i.e, n
 	 * 		-time complexity is O(n^m) , space complexity is O(m) i.e, height of the tree is 'm' 
-	 * 		
+	 * - memoization technique
+	 * 		-space complexity is O(m), time complexity is O(m * n)
 	 */
-	canSum(targetSum, numbers) {
+	canSum(targetSum, numbers, memo = {}) {
+		if (targetSum in memo) return memo[targetSum]
+
 		if (targetSum === 0) return true;
 
 		if (targetSum < 0) return false;
 
 		for (let num of numbers) {
-			if (this.canSum(targetSum - num, numbers) === true)
+			if (this.canSum(targetSum - num, numbers, memo) === true) {
+				memo[targetSum] = true
 				return true
+			}
 		}
+		memo[targetSum] = false
 		return false;
 	}
 }
@@ -137,7 +143,8 @@ function start(input) {
 		case 3:
 			console.log('canSum')
 			console.log(dp.canSum(7, [2, 4]))
-			console.log(dp.canSum(7, [7, 4, 2]))
+			// console.log(dp.canSum(7, [7, 4, 2]))
+			// console.log(dp.canSum(1000, [10, 7, 14, 31, 37]))
 			break;
 
 		default:
