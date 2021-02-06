@@ -34,16 +34,14 @@ class SetZeroMatrix {
                         }
                     }
                 }
-
-            }
                 break;
+            }
+            /**
+             * Approach 1
+             * 1) remove the row array and convert it into a bool checked value. By this space complexity has reduced to O(width)
+             * 2) remove the col array 
+             */
             case 2: {
-                /**
-                 * Approach 1
-                 * 1) remove the row array and convert it into a bool checked value. By this space complexity has reduced to O(width)
-                 * 2) constant space complexity
-                 */
-
                 // col_zeroes is required as it would identify the zeroes in the matrix
                 for (let row = 0; row < height; ++row) {
                     for (let col = 0; col < width; ++col) {
@@ -67,11 +65,49 @@ class SetZeroMatrix {
                             this.matrix[row][col] = 0
                     }
                 }
-
+                break
             }
+            case 3: {
+                let first_row_zero = false
+                for (let col = 0; col < width; ++col) {
+                    if (this.matrix[0][col] == 0)
+                        first_row_zero = true
+                }
+
+                /**
+                 * identifying the 0's in cells and setting the respective 0th column to 0
+                 * */
+                for (let row = 0; row < height; ++row) {
+                    for (let col = 0; col < width; ++col) {
+                        if (this.matrix[row][col] == 0)
+                            this.matrix[0][col] = 0
+                    }
+                }
 
 
-
+                for (let row = 1; row < height; ++row) {
+                    // assuming each row doesn't have 0's in their cells
+                    contains_zero = false
+                    for (let col = 0; col < width; ++col) {
+                        if (this.matrix[row][col] == 0) {
+                            // `row` has zero in it
+                            contains_zero = true
+                            break
+                        }
+                    }
+                    // after knowing the existence of 0's in cells of the row and updating each cell of the row to 0
+                    for (let col = 0; col < width; ++col) {
+                        if (contains_zero || this.matrix[0][col] == 0)
+                            this.matrix[row][col] = 0
+                    }
+                }
+                // updating 0's in the first row if any of the cell in the first row has 0's in it `first_row_zero` verifies the existence
+                if (first_row_zero) {
+                    for (let col = 0; col < width; ++col)
+                        this.matrix[0][col] = 0
+                }
+                break
+            }
         }
 
 
