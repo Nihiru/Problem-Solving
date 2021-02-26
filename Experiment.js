@@ -33,14 +33,31 @@ let company = {
 }
 
 function sumSalaries(department) {
+    let sum = 0;
     if (Array.isArray(department))
         return department.reduce((prev, curr) => prev + curr.salary, 0)
     else {
-        let sum = 0;
         for (let subdep of Object.values(department)) {
             sum += sumSalaries(subdep)
         }
     }
     return sum
 }
-console.log(sumSalaries(company))
+// console.log(sumSalaries(company))
+
+/***
+ * implementing groupBy function 
+ */
+
+var groupBy = function (xs, key) {
+    return xs.reduce(function (rv, x) {
+        /**
+         * Here,
+         * x[key] == x['length'] where x is string object, string has a length property and it can be accessed via "."  or "[]" operator i.e, x.length or x['length']
+         * typeof(rv[x[key]] = rv[x[key]] || []) returns object ???
+         */
+        (rv[x[key]] = rv[x[key]] || []).push(x)
+        return rv;
+    }, {})
+}
+console.log(groupBy(['one', 'two', 'three'], 'length'))
