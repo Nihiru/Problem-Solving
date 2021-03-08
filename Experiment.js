@@ -55,9 +55,12 @@ var groupBy = function (xs, key) {
          * Here,
          * x[key] == x['length'] where x is string object, string has a length property and it can be accessed via "."  or "[]" operator i.e, x.length or x['length']
          * typeof(rv[x[key]] = rv[x[key]] || []) returns object ???
+         * grouping operator () controls the precedence of evaluation in expression
+         * 
          */
-        (rv[x[key]] = rv[x[key]] || []).push(x)
-        return rv;
+        let result = (rv[x[key]] = rv[x[key]] || [])
+        result.push(x)
+        return result;
     }, {})
 }
 console.log(groupBy(['one', 'two', 'three'], 'length'))
