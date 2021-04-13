@@ -87,7 +87,7 @@ class SetZeroMatrix {
 
                 for (let row = 1; row < height; ++row) {
                     // assuming each row doesn't have 0's in their cells
-                    contains_zero = false
+                    let contains_zero = false
                     for (let col = 0; col < width; ++col) {
                         if (this.matrix[row][col] == 0) {
                             // `row` has zero in it
@@ -130,4 +130,4 @@ smzObj = new SetZeroMatrix([
     [1, 0, 1, 3],
     [5, 6, 9, 9],
     [7, 8, 2, 0]
-]).setMatrixZeroes(1)
+]).setMatrixZeroes(3)

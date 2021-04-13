@@ -1,3 +1,11 @@
+/***
+ * Approach 1
+ * Time complexity : O(N K log K ) where N is the length of string, K is the maximum length of a string in `words`.
+ *                  The outer loop has a complexity O(N). Then, we sort each string in O(K log K) time
+ * Space complexity : O(N K), the total information content stored in `uniqueWords`
+ * 
+ *  */
+
 var groupAnagrams = function (words) {
     let uniqueWords = {}
     if (words.length) {
@@ -18,3 +26,5 @@ var groupAnagrams = function (words) {
 }
 
 console.log(groupAnagrams(["hello", "elloh", "world", "rowld", "SUP", "calling"]))
+
+// approach 2
