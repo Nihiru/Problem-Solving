@@ -1,4 +1,12 @@
 from collections import defaultdict
+"""
+Complexity
+    Time: 
+        O(N K) where N is the length of the array and K is the maximum length of string at a given time.
+    Space:
+        O(N K)
+        In ans the key is represented as tuple of 26 items and the values a list
+"""
 
 
 def groupAnagrams(strs):
