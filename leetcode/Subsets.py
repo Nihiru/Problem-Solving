@@ -23,4 +23,22 @@ def generate_subset_iteratively(set_arr):
         print("")
 
 
-generate_subset_iteratively([1, 2, 3])
+# generate_subset_iteratively([1, 2, 3])
+
+
+def subset_util(A, subset, index):
+    print(*subset)
+    for i in range(index, len(A)):
+        subset.append(A[i])
+        subset_util(A, subset, i+1)
+        subset.pop(-1)
+    return
+
+
+def generate_subset_recursively(A):
+    subset = []
+    index = 0
+    subset_util(A, subset, index)
+
+
+print(generate_subset_recursively([1, 2, 3, 4]))
