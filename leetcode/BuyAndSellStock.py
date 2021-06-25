@@ -38,7 +38,7 @@ def buy_and_sell_stock_I(prices):
                 then I'm assuming I'm getting zero profit
             as I move on to the next day, again I'm checking if the current day stock is minimum or not
             if yes
-                then consider that my purchasing stock
+                then consider that as my purchasing stock (even though I'm analysing and not purchasing)
             else
                 compute previous day stock value with current day stock value and check the profit.
             """
