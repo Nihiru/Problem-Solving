@@ -2,7 +2,6 @@
 Problem description:
     1) Given an array of price of stock and where prices[i] is the price of a given stock on ith day.
     2) Find out the maximum profit that can be made by buying a stock from a day and selling it on the future day  
-
 """
 
 
@@ -27,20 +26,34 @@ def buy_and_sell_stock_I(prices):
 
         """ 
         Below approach is considered based on 
-        1) starting with a stock and comparing it with previous set stock to identify the minimum stock available. Just to make a profit
-        2) Complexity
-            1) Time Complexity: O(N) where N is the number of elements in the array to be traversed
-            2) Space Complexity: O(1) where temporary variables are used for computation
+        1) Time Complexity: O(N) where N is the number of elements in the array to be traversed
+        2) Space Complexity: O(1) where temporary variables are used for computation
         """
         min_stock_price = float('inf')
         for price in prices:
+            """to find a stock with minimum value"""
             min_stock_price = min(price, min_stock_price)
+            """
+            if I consider that current stock of the day is minimum and I buy it and sell it on the current day itself
+                then I'm assuming I'm getting zero profit
+            as I move on to the next day, again I'm checking if the current day stock is minimum or not
+            if yes
+                then consider that my purchasing stock
+            else
+                compute previous day stock value with current day stock value and check the profit.
+            """
             profit = price - min_stock_price
+            """
+            making sure we're achieving maximum profit
+            """
             max_profit = max(max_profit, profit)
 
 
     return max_profit
 
+
+def buy_and_sell_stock_II(prices):
+    pass
 
 # print(buy_and_sell_stock([7,1,5,3,6,4]))
 print(buy_and_sell_stock_I([2,4,1]))
