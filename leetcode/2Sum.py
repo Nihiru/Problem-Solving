@@ -26,7 +26,7 @@ def two_sum(nums=[], target=0, approach=1):
                         return (i+1,j+1)
         elif approach == 2:
             """approach 2
-            1) Time complexity - O(n) as traversing the array only once
+            1) Time complexity - O(n) as traversing the array only once. Each look up in the table costs O(1) time
             2) Space complexity - O(n) as hash would require the elements present in the array for comparison
             """
             # calculate difference = target - x i.e, x points to the elements
@@ -36,7 +36,9 @@ def two_sum(nums=[], target=0, approach=1):
                 if diff in hash:
                     return  (hash.get(diff, 0) + 1, i+1)
                 else:
-                    hash[nums[i]] = i 
+                    hash[nums[i]] = i
+        else:
+            pass
         return "Target cannot be calculated with the given array"
 
         
