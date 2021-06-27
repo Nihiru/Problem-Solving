@@ -50,10 +50,38 @@ def buy_and_sell_stock_I(prices):
 
 
     return max_profit
+"""
 
+Dynamic Programming
+1) Dimensions of a problem projects the states computed after each transition 
+2) State defines a position after a computation
+3) A Transition defines an set of operations for states to be altered and these states may be a new one or replacing an existing one.
+
+"""
 
 def buy_and_sell_stock_II(prices):
-    pass
+    best_with_stock = float('-inf')
+    best_without_stock = 0
+    for price in prices:
+        """
+        Below approach follows Dynamic Programming
+        1) A new state for best_with_stock and best_without_stock is computed based on its previous state
+        2) best_with_stock functions
+            1) Responsible for holding stocks with least prices.
+            2) Identify the minimum stock by comparing it to the previous days stock
+            3) Assuming that I'm going to buy current days stock and selling it on the next day and should make a profit and not a loss
+        3) best_without_stock specifies 
+            1) It is used to calculate the maximum profit by checking the previous stock with current stock.
+        """
+        best_with_stock = max(best_with_stock, best_without_stock - price)
+        best_without_stock = max(best_without_stock, best_with_stock + price)
+    
+    return best_without_stock
 
-# print(buy_and_sell_stock([7,1,5,3,6,4]))
+
 print(buy_and_sell_stock_I([2,4,1]))
+"""
+To understand better using different scenarios
+"""
+print(buy_and_sell_stock_II([7,1,5,4,6,3]))
+print(buy_and_sell_stock_II([7,6,5,4,3,2,1]))
