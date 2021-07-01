@@ -16,8 +16,8 @@ def maximum_path_sum(grid):
     N = len(grid)
     M = len(grid[0])
     """
-    1)  
-
+    1)  Calculating the first row and first column values and then proceed by taking the minimum values of its top and right cells.
+    2)  At the end we can return the minimum path present at the last cell
     """
     # initializing the first row 
     for i in range(1, M):
