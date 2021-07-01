@@ -79,6 +79,14 @@ def buy_and_sell_stock_II(prices):
     return best_without_stock
 
 
+def buy_and_sell_stock_III(prices):
+    """Performing at most two transactions
+
+    Args:
+        prices (Array[int]): [prices of stock on each day]
+    """
+
+
 print(buy_and_sell_stock_I([2,4,1]))
 """
 To understand better using different scenarios
