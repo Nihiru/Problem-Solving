@@ -31,7 +31,9 @@ def buy_and_sell_stock_I(prices):
         """
         min_stock_price = float('inf')
         for price in prices:
-            """to find a stock with minimum value"""
+            """to find a stock with minimum value,
+               checking if the current stock i.e, price is minimum stock by comparing to the previous stock value
+            """
             min_stock_price = min(price, min_stock_price)
             """
             if I consider that current stock of the day is minimum and I buy it and sell it on the current day itself
@@ -66,7 +68,7 @@ def buy_and_sell_stock_II(prices):
         """
         Below approach follows Dynamic Programming
         1) A new state for best_with_stock and best_without_stock is computed based on its previous state
-        2) best_with_stock functions
+        2) functionalities of best_with_stock
             1) Responsible for holding stocks with least prices.
             2) Identify the minimum stock by comparing it to the previous days stock
             3) Assuming that I'm going to buy current days stock and selling it on the next day and should make a profit and not a loss
