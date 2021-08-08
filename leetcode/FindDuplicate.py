@@ -101,12 +101,24 @@ def find_duplicate_II(elements, k=None, approach=1):
             if elements[i] in uniq_elements:
                 return True
             uniq_elements[elements[i]] = i
+
+    elif approach == 3:
+        if len(set(elements)) == len_ele:
+            return False
+        for i in range(len_ele):
+            range_of_elements = elements[i: i+k+1]
+            if len(set(range_of_elements)) < len(range_of_elements):
+                return True
+        return False
+
     else:
         pass
 
     return False
 
 
-print(find_duplicate_II([1,2,3,1], 3, 2))
-print(find_duplicate_II([1,0,1,1],3,2))
-# print(find_duplicate_II([1,2,3,1,2,3], 2, 2)) # failing 
+# print(find_duplicate_II([1,2,3,1], 3, 2))
+# print(find_duplicate_II([1,0,1,1],3,2))
+# print(find_duplicate_II([1,2,3,1,2,3], 2, 2)) # return False
+# print(find_duplicate_II([1, 0, 1, 1], 1, 3)) # return True
+# print(find_duplicate_II([1,2,3,1,2,3], 2, 3))
