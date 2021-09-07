@@ -10,16 +10,17 @@ class DepthFirstSearch:
             v: w
         })
 
-    def traverse(self, node=None):
-        visited = []
-        if len(self.graph):
-            for key, values in self.graph.items():
-                if len(values):
-                    for next_node in values:
-                        if next_node not in visited:
-                            pass
+    def traverse(self, node, visited):
+        visited.add(node)
+        print(f"Nodes visited: {node}")
+        if node in self.graph:
+            for neighbor in self.graph[node]:
+                if len(neighbor):
+                    node = list(neighbor.keys())[0]
+                    if node not in visited:
+                        self.traverse(node, visited)
         else:
-            return "Empty graph"
+            return None
 
     def view_graph(self):
         if len(self.graph):
@@ -37,5 +38,5 @@ dfs_obj.add_node(2, 4, 2)
 dfs_obj.add_node(3, 5, 3)
 dfs_obj.add_node(4, 5, 2)
 dfs_obj.add_node(5, 6, 5)
-
+dfs_obj.traverse(1, set())
 dfs_obj.view_graph()
