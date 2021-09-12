@@ -15,22 +15,23 @@ class DepthFirstSearch:
 
     def add_node(self, source_vertex, dest_vertex=None, edge=0):
         if source_vertex not in self.graph:
-            self.graph[source_vertex] = []
-        self.graph[source_vertex].append({
-            dest_vertex: edge
-        })
+            self.graph[source_vertex] = {}
+        if dest_vertex:
+            if dest_vertex not in self.graph:
+                self.graph[dest_vertex] = {}
+            self.graph[source_vertex][dest_vertex] = edge  # edges to vertices
 
     def traverse(self, node, visited):
         visited.add(node)
-        print(f"Nodes visited: {node}")
-        if node in self.graph and len(self.graph[node]):
-            neighbors = self.graph[node]
-            for neighbor in neighbors:
-                node = list(neighbor.keys())[0]
+        # for nodes that have siblings
+        if len(self.graph[node]):
+            print(f"Nodes visited: {node}")
+            for node in self.graph[node]:
                 if node not in visited:
                     self.traverse(node, visited)
+        # for leaf nodes and nodes that don't have siblings
         else:
-            return None
+            print(f"Nodes visited: {node}")
 
     def view_graph(self):
         if len(self.graph):
@@ -40,15 +41,22 @@ class DepthFirstSearch:
             print("Empty dictionary")
 
 
-dfs_obj = DepthFirstSearch()
-dfs_obj.view_graph()
-dfs_obj.add_node(1, 2, 1)
-dfs_obj.add_node(1, 3, 2)
-dfs_obj.add_node(2, 4, 2)
-dfs_obj.add_node(3, 5, 3)
-dfs_obj.add_node(3, 7, 5)
-dfs_obj.add_node(4, 5, 2)
-dfs_obj.add_node(5, 6, 5)
-dfs_obj.traverse(1, set())
-# dfs_obj.view_graph()
-dfs_obj.add_node(9)
+if __name__ == "__main__":
+    node_set = set()
+    dfs_obj = DepthFirstSearch()
+    # dfs_obj.view_graph() # Empty dictionary
+    dfs_obj.add_node(1, 2, 1)
+    dfs_obj.add_node(1, 3, 2)
+    dfs_obj.add_node(2, 4, 2)
+    dfs_obj.add_node(3, 5, 3)
+    dfs_obj.add_node(3, 7, 5)
+    dfs_obj.add_node(4, 5, 2)
+    dfs_obj.add_node(5, 6, 5)
+    dfs_obj.add_node(9)
+    dfs_obj.traverse(1, node_set)
+    # dfs_obj.view_graph()
+
+    # to find out if any disjoint node is present in the graph
+    disjoint_node = set(list(dfs_obj.graph)) - node_set
+    if disjoint_node:
+        print(f"Disjoint node: {list(disjoint_node)[0]}")
