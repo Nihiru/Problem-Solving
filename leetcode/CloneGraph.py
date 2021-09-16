@@ -18,12 +18,33 @@ class Node:
         for node in nodes:
             self.neighbors.append(Node(node))
 
+    def clone_graph(self, node: 'Node') -> 'Node':
+        # perform a deep clone with the array via Bread First Search
 
-def clone_graph(root_graph: 'Node') -> 'Node':
-    # perform a deep clone with the array via Bread First Search
-    print(root_graph)
+        clone = {}
+        # this just works for one node with its neighbor
+
+        # if node.val not in clone:
+        #     clone[node.val] = []
+
+        # if len(node.neighbors):
+        #     for neighbor in node.neighbors:
+        #         clone[node.val].append(neighbor.val)
+
+        # using inner function to perform a recursive
+        def dfs(node):
+            if node in clone:
+                return clone[node]
+
+            copy = Node(node.val)
+            clone[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+
+        return dfs(node) if node else None
 
 
 root_graph = Node(1)
 root_graph.add_neighbors([2, 3])
-clone_graph(root_graph)
+root_graph.clone_graph(root_graph)
