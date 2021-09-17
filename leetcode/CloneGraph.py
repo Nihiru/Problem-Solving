@@ -15,6 +15,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
     def add_neighbors(self, nodes):
+
         for node in nodes:
             self.neighbors.append(Node(node))
 
@@ -33,18 +34,20 @@ class Node:
 
         # using inner function to perform a recursive
         def dfs(node):
-            if node in clone:
-                return clone[node]
-
-            copy = Node(node.val)
-            clone[node] = copy
+            if node.val in clone:
+                return clone[node.val]
+            # initializing an object from an existing graph object of type `Node`
+            newly_created_node = Node(node.val)
+            clone[node.val] = newly_created_node
             for nei in node.neighbors:
-                copy.neighbors.append(dfs(nei))
-            return copy
+                newly_created_node.neighbors.append(dfs(nei))
+            return newly_created_node
 
         return dfs(node) if node else None
 
 
 root_graph = Node(1)
 root_graph.add_neighbors([2, 3])
+root_graph.neighbors[0].add_neighbors([1, 4])
+root_graph.neighbors[1].add_neighbors([1, 4])
 root_graph.clone_graph(root_graph)
