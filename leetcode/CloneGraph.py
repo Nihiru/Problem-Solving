@@ -19,7 +19,7 @@ class Node:
         for node in nodes:
             self.neighbors.append(Node(node))
 
-    def clone_graph(self, node: 'Node') -> 'Node':
+    def clone_graph(self, approach, node: 'Node') -> 'Node':
         # perform a deep clone with the array via Bread First Search
 
         clone = {}
@@ -32,7 +32,7 @@ class Node:
         #     for neighbor in node.neighbors:
         #         clone[node.val].append(neighbor.val)
 
-        # using inner function to perform a recursive
+        # using inner function to perform a recursive(DFS)
         def dfs(node):
             if node.val in clone:
                 return clone[node.val]
@@ -43,11 +43,20 @@ class Node:
                 newly_created_node.neighbors.append(dfs(nei))
             return newly_created_node
 
-        return dfs(node) if node else None
+        stack = []
+
+        def bfs(node):
+            # since graph may contain cycles, a boolean visited array is used
+            pass
+
+        if approach == 1:
+            return dfs(node) if node else None
+        else:
+            return bfs(node) if node else None
 
 
 root_graph = Node(1)
 root_graph.add_neighbors([2, 3])
 root_graph.neighbors[0].add_neighbors([1, 4])
 root_graph.neighbors[1].add_neighbors([1, 4])
-root_graph.clone_graph(root_graph)
+root_graph.clone_graph(1, root_graph)

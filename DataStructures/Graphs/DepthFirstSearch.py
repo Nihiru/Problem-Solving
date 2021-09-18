@@ -8,7 +8,7 @@ For more information
 """
 
 
-class DepthFirstSearch:
+class DepthFirstSearchGraph:
 
     def __init__(self):
         self.graph = dict()
@@ -43,7 +43,7 @@ class DepthFirstSearch:
 
 if __name__ == "__main__":
     node_set = set()
-    dfs_obj = DepthFirstSearch()
+    dfs_obj = DepthFirstSearchGraph()
     # dfs_obj.view_graph() # Empty dictionary
     dfs_obj.add_node(1, 2, 1)
     dfs_obj.add_node(1, 3, 2)
