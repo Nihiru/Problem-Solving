@@ -1,0 +1,27 @@
+-) Functional Correctness
+-) Coding practice
+    -) Variable naming
+    -) Comments
+    -) Exception Handling
+    -) Logging
+-) Quality of test cases (code coverage)
+-) LLD
+-) Concurrency(critical section)
+-) Non Functional Requirements
+    -) Define algorithmic complexity
+    -) Choosing the right datastructure
+    -) Query Indexing, Sharding
+-) An Application is defined based on 
+    -) Entity
+        -) Any persistence of data must be modelled as an entity class
+    -) DTO
+        -) data transfer objects is responsible for carrying data between processes
+    -) DAO
+        -) The layer that exists between Business layer and Database
+        -) It separates low level operations from high level business services
+-) SOLID Desiign Pattern
+    -) S - Single Responsibility
+    -) O - Open closed principle(open for extension but closed for modification)
+    -) L - Liskov Substitution Priniciple
+    -) I - Interface Seggregation
+    -) D - Dependency Inversion

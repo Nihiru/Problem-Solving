@@ -53,4 +53,9 @@ def canFinish(numCourse: int, prerequisites: List[List[int]]) -> str:
             return "Possible"
 
 
-print(canFinish(2, [[1, 0], [0, 1]]))  # Impossible
+# print(canFinish(2, [[1, 0], [0, 1]]))  # Impossible
+
+
+def course_schedule(numcourse: int, prerequisites: List[List[int]]):
+    for node in numcourse:
+        pass

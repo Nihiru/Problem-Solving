@@ -7,8 +7,8 @@ def find_duplicate(elements, approach):
     1) Time Complexity: O(N^2) due to traversing of array twice
     2) Space Complexity: O(1) as variables are utilized
 
-    
-    """ 
+
+    """
     len_ele = len(elements)
     uniq = 0
     if approach == 1:
@@ -16,7 +16,7 @@ def find_duplicate(elements, approach):
             comp = elements[i]
             for j in range(i+1, len_ele):
                 if elements[j] == comp:
-                    uniq=True
+                    uniq = True
                     break
     elif approach == 2:
         hash = {}
@@ -39,16 +39,19 @@ def find_duplicate(elements, approach):
 
 # print(find_duplicate([1,2,3,4,5,6], 3))
 
+
 """
 Description:
-Given an integer array nums and an integer k, 
+Given an integer array nums and an integer k
 return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
 
 1)  finding out if duplicates exists in the given range `k`
-2)  these ranges need to be apart for at least 1 position 
+2)  these ranges need to be apart for at least 1 position
 3)  and the elements need to be same based on the description
 
 """
+
+
 def find_duplicate_II(elements, k=None, approach=1):
     len_ele = len(elements)
     if not k:
@@ -60,8 +63,8 @@ def find_duplicate_II(elements, k=None, approach=1):
     2) Space: O(N) due to use of hash tables
     """
     if approach == 1:
-        index_dict =  {} # how much space 
-        arr = [] # how much space does this array occupies ?
+        index_dict = {}  # how much space
+        arr = []  # how much space does this array occupies ?
         for i in range(len_ele):
             if elements[i] in index_dict:
                 index_dict[elements[i]] = (i - index_dict[elements[i]])
@@ -73,7 +76,7 @@ def find_duplicate_II(elements, k=None, approach=1):
             for ele in arr:
                 if ele <= k:
                     return True
-    
+
     elif approach == 2:
         """
         1)  Changing the  

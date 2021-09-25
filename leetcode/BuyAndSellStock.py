@@ -18,7 +18,7 @@ def buy_and_sell_stock_I(prices):
         """
         # min_price = min(prices, default=0)
         # min_price_index = prices.index(min_price)
-        
+
         # for i in range(min_price_index+1, prices_len):
         #     diff = abs(min_price - prices[i])
         #     if diff > max_profit:
@@ -50,8 +50,9 @@ def buy_and_sell_stock_I(prices):
             """
             max_profit = max(max_profit, profit)
 
-
     return max_profit
+
+
 """
 
 Dynamic Programming
@@ -60,6 +61,7 @@ Dynamic Programming
 3) A Transition defines an set of operations for states to be altered and these states may be a new one or replacing an existing one.
 
 """
+
 
 def buy_and_sell_stock_II(prices):
     best_with_stock = float('-inf')
@@ -77,7 +79,7 @@ def buy_and_sell_stock_II(prices):
         """
         best_with_stock = max(best_with_stock, best_without_stock - price)
         best_without_stock = max(best_without_stock, best_with_stock + price)
-    
+
     return best_without_stock
 
 
@@ -89,9 +91,9 @@ def buy_and_sell_stock_III(prices):
     """
 
 
-print(buy_and_sell_stock_I([2,4,1]))
+print(buy_and_sell_stock_I([2, 4, 1]))
 """
 To understand better using different scenarios
 """
-print(buy_and_sell_stock_II([7,1,5,4,6,3]))
-print(buy_and_sell_stock_II([7,6,5,4,3,2,1]))
+print(buy_and_sell_stock_II([7, 1, 5, 4, 6, 3]))
+print(buy_and_sell_stock_II([7, 6, 5, 4, 3, 2, 1]))
