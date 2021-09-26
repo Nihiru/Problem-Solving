@@ -32,5 +32,56 @@ def three_sum(arr, target=0):
 
 
 # print(three_sum([-1, 0, 1, 2, -1, -4])) # [[-1, -1, 2], [-1, 0, 1]]
+
 # [[-4, 0, 4], [-4, 1, 3], [-2, -2, 4], [-2, -1, 3], [-2, 0, 2], [-1, -1, 2], [-1, 0, 1]]
-print(three_sum([-4, -2, -2, -1, -1, 0, 1, 2, 3, 4]))
+# print(three_sum([-4, -2, -2, -1, -1, 0, 1, 2, 3, 4]))
+
+
+def three_sum_closest(arr, target=1):
+    comb_sum_set = set()
+    sorted_arr = sorted(arr)
+    closest_value = None
+
+    """
+    .Logic:
+        ..fetching all the combinations that sums up to a number
+        ..After getting the list of sums from the combinations find the `ranges` of these sums and then 
+          selecting the corresponding closest number out of these
+    """
+    #  Combinational Sums calculation
+    for ele in range(len(sorted_arr) - 3):
+        # based on the number of integers
+        low = ele + 1
+        high = len(sorted_arr) - 1
+        while(low < high):
+            total = sorted_arr[ele] + sorted_arr[low] + sorted_arr[high]
+            comb_sum_set.add(total)
+
+            while(low < high and sorted_arr[low] == sorted_arr[low + 1]):
+                low += 1
+            while(low < high and sorted_arr[high] == sorted_arr[high - 1]):
+                high -= 1
+
+            low += 1
+            high -= 1
+
+    # after getting the Combinal Sum Set, find the intervals between the numbers in set and target
+    import math
+    min = math.inf
+    sum_scale = {}
+
+    for i in comb_sum_set:
+        if i == target:
+            return i
+        count = len(range(i, target))
+        sum_scale[i] = count
+
+    for key, value in sum_scale.items():
+        if value < min:
+            min = value
+            closest_value = key
+    return closest_value
+
+
+# print(three_sum_closest([-1, 0, 1, 2, -1, -4]))
+print(three_sum_closest([0, 2, 1, -3]))
