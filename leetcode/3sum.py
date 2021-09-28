@@ -49,7 +49,7 @@ def three_sum_closest(arr, target=1):
           selecting the corresponding closest number out of these
     """
     #  Combinational Sums calculation
-    for ele in range(len(sorted_arr) - 3):
+    for ele in range(len(sorted_arr) - 2):
         # based on the number of integers
         low = ele + 1
         high = len(sorted_arr) - 1
@@ -63,7 +63,7 @@ def three_sum_closest(arr, target=1):
                 high -= 1
 
             low += 1
-            high -= 1
+            # high -= 1
 
     # after getting the Combinal Sum Set, find the intervals between the numbers in set and target
     import math
@@ -84,4 +84,26 @@ def three_sum_closest(arr, target=1):
 
 
 # print(three_sum_closest([-1, 0, 1, 2, -1, -4]))
-print(three_sum_closest([0, 2, 1, -3]))
+# print(three_sum_closest([0, 2, 1, -3]))
+
+
+def sum_of_three_closest(arr, target=1):
+    sorted_arr = sorted(arr)
+    sorted_arr_len = len(sorted_arr)
+    result = sorted_arr[0] + sorted_arr[1] + sorted_arr[sorted_arr_len - 1]
+    for i in range(sorted_arr_len):
+        j, k = i+1, sorted_arr_len - 1
+        while j < k:
+            current = sorted_arr[i] + sorted_arr[j] + sorted_arr[k]
+            if current == target:
+                return target
+            elif abs(current - target) < abs(result - target):
+                result = current
+            elif current > target:
+                k -= 1
+            else:
+                j += 1
+    return result
+
+
+print(sum_of_three_closest([0, 2, 1, -3]))
