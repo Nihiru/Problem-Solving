@@ -1,0 +1,11 @@
+1) Board can be of any size
+2) Each player puts their counter on the board starting position
+3) Take turns to roll the dice
+4) Move your counter forward based on the spaces shown after rolling the dice
+5) If the counter lands at the bottom of the ladder then the counter is moved to top of the ladder
+6) If the counter lands at the head of the snake then the counter is moved down to the tail of the snake
+7) Each player will get a fair chance to roll the dice
+8) Game is continued till there are two players left
+9) User has to reach the exact destinationi.e, when a user is located at 99th position and requires
+   to go forawrd by 1 block for reaching destination. User needs to roll a `1` on the dice to reach
+   and not more than `1`. 
