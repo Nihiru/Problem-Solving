@@ -75,7 +75,7 @@ def tribonacci(n):
 # print(tribonacci(4))
 
 
-def climbing_stairs(n):
+def climbing_stairs(n, mem={1: 1, 2: 1}):
     """ 
     - Observations
         - Perspective
@@ -94,14 +94,21 @@ def climbing_stairs(n):
 
     # return dp[n]
 
-    a, b = 1, 1
-    c = a + b
-    for _ in range(n-2):  # halting condition is n-2 because we've already calculated the F(1) and F(2)
-        a = b
-        b = c
-        c = a + b
+    # Space is reduced from O(N) to O(1)
+    # a, b = 1, 1
+    # c = a + b
+    # for _ in range(n-2):  # halting condition is n-2 because we've already calculated the F(1) and F(2)
+    #     a = b
+    #     b = c
+    #     c = a + b
 
-    return c
+    # return c
+
+    # using memoiztion technique
+    if n in mem:
+        return mem[n]
+    mem[n] = climbing_stairs(n-1, mem) + climbing_stairs(n-2, mem)
+    return mem[n]
 
 
 print(climbing_stairs(4))
