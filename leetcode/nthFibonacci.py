@@ -72,7 +72,7 @@ def tribonacci(n):
     return dp[n]
 
 
-print(tribonacci(4))
+# print(tribonacci(4))
 
 
 def climbing_stairs(n):
@@ -86,10 +86,22 @@ def climbing_stairs(n):
         - Space: O(N) to store the calculated values
     - A Fibonacci Sequence pattern occurs when this problem is dissected manually.
     """
-    dp = [1, 1] + [0] * (n-1)  # F(1) = 1, F(2) = 1
-    # Calculating from F(3) based on F(1) + F(2)
-    for i in range(2, n+1):
-        # Current problems solution is dependent on previous solution
-        dp[i] = dp[i-1] + dp[i-2]
+    # dp = [1, 1] + [0] * (n-1)  # F(1) = 1, F(2) = 1
+    # # Calculating from F(3) based on F(1) + F(2)
+    # for i in range(2, n+1):
+    #     # Current problems solution is dependent on previous solution
+    #     dp[i] = dp[i-1] + dp[i-2]
 
-    return dp[n]
+    # return dp[n]
+
+    a, b = 1, 1
+    c = a + b
+    for _ in range(n-2):  # halting condition is n-2 because we've already calculated the F(1) and F(2)
+        a = b
+        b = c
+        c = a + b
+
+    return c
+
+
+print(climbing_stairs(4))
