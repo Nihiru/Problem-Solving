@@ -1,5 +1,7 @@
 def find_min(nums):
     # return min(nums) # approach takes O(N) time
+    if len(nums) == 1:
+        return nums[0]
     low = 0
     high = len(nums) - 1
     if nums[high] > nums[0]:

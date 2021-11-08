@@ -1,4 +1,4 @@
-def rob(nums):
+def rob_I(nums):
     """below code would not work for test cases
     [2,1,1,2]
     [10,1,1,1,1,10]
@@ -34,4 +34,17 @@ def rob(nums):
 # nums = [2, 1, 1, 2]
 nums = [10, 1, 1, 10]
 # nums = [25, 1, 2, 27, 6, 6, 88, 1]
-print(rob(nums))
+# print(rob_I(nums))
+
+
+def rob_II(nums):
+    rob1, rob2 = 0, 0
+    for n in nums:
+        temp = max(n+rob1, rob2)
+        rob1 = rob2
+        rob2 = temp
+    return rob2
+
+
+nums = [10, 1, 1, 1, 10]
+print(rob_II(nums))
