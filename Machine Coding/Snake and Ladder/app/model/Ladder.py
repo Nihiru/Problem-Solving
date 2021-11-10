@@ -1,4 +1,17 @@
 class Ladder:
-    def __init__(self) -> None:
-        self.start = 0
-        self.end = 0
+
+    def __init__(self, start, end) -> None:
+        self.start = start
+        self.end = end
+
+    def get_start(self):
+        return self.start
+
+    def set_start(self, start):
+        self.start = start
+
+    def get_end(self):
+        return self.end
+
+    def set_end(self, end):
+        self.end = end

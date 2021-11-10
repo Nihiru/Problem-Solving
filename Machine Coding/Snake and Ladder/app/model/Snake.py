@@ -1,4 +1,10 @@
 class Snake:
-    def __init__(self) -> None:
-        self.head = 0
-        self.tail = 0
+    def __init__(self, head, tail) -> None:
+        self.head = head
+        self.tail = tail
+
+    def get_head(self):
+        return self.head
+
+    def get_tail(self):
+        return self.tail
