@@ -4,6 +4,11 @@ def rotate_array(nums, k):
     Args:
         nums (Array): A series of integers
         k (integer): Number of shifts to be done on the array
+
+    Complexity:
+        Time: O(N) as every element is traversed
+        Space:O(1) as in-memory list is modified as it is traversed
+
     """
     if len(nums):
         k = k % len(nums)

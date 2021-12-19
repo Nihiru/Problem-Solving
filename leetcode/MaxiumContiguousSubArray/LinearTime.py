@@ -1,4 +1,4 @@
-def maxSubArray(self, array: List[int]) -> int:
+def maxSubArray(self, array) -> int:
     max_sum = array[0]
     current_sum = max_sum
     for ele in array[1:]:

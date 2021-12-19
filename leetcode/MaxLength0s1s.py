@@ -9,14 +9,16 @@ def findMaxLength(nums, approach=1):
     max_len = 0
     count = 0
     if approach == 1:
+        # two different pointers that would get the lenght of the sub-array of equal number of 0s and 1s
         for i in range(len(nums) - 2):
             zero_count = ones_count = 0
             for j in range(i, len(nums) - 1):
+                # below logic is used to calculate length of 0s and 1s
                 if nums[j] == 0:
                     zero_count += 1
                 else:
                     ones_count += 1
-
+                # retrieving the maximum from the calculated ranges
                 if zero_count == ones_count:
                     max_len = max(max_len, j - i + 1)
     elif approach == 2:
