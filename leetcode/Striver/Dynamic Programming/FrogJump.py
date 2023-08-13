@@ -33,9 +33,51 @@ def action(idx, heights, dp):
     return dp[idx]
 
 
-def frog_jump(n, heights):
+def frog_jump_DP(n, heights):
     dp = [-1] * (n+1)
-    return action(n-1, heights, dp)
+    action(n-1, heights, dp)
+    return dp
 
 
-print(frog_jump(5, [30, 10, 30, 60, 10, 60, 50]))
+ele = [30, 10, 30, 60, 10, 60, 50]
+n = len(ele)
+
+# print(frog_jump_DP(n, ele))
+
+"""
+-) Approach 2:
+    -) Tabulation Method
+        -) Following the Bottom-Up technique
+        -) Calculation of the next step from the previous step
+"""
+
+
+def frog_jump_tabulation(n, heights):
+    dp = [0] * n
+    for i in range(1, n):
+        fs = dp[i-1] + abs(heights[i] - heights[i-1])
+        ss = sys.maxsize
+        if i > 1:
+            ss = dp[i-2] + abs(heights[i] - heights[i-2])
+        dp[i] = min(fs, ss)
+    return dp
+
+
+# print(frog_jump_tabulation(n, ele))
+
+
+def frog_jump_optimised(n, heights):
+    prev = 0
+    prev2 = 0
+    for i in range(1, n):
+        fs = prev + abs(heights[i] - heights[i-1])
+        ss = sys.maxsize
+        if i > 1:
+            ss = prev2 + abs(heights[i] - heights[i-2])
+        curr = min(fs, ss)
+        prev2 = prev
+        prev = curr
+    return prev
+
+
+print(frog_jump_optimised(n, ele))
