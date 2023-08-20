@@ -80,4 +80,15 @@ def frog_jump_optimised(n, heights):
     return prev
 
 
-print(frog_jump_optimised(n, ele))
+# print(frog_jump_optimised(n, ele))
+
+
+""" 
+-) when the jumps tends to be k 
+-) then solution needs to capture a index along with its jumps that yields 
+    -) Recursion
+        -) time complexity of O(n * k) and space complexity of O(n)
+    -) DP
+        -) time complexity of O(n * k) and space complexity of O(n) + O (n)
+    -) 
+"""
