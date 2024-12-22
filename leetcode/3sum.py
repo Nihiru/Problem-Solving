@@ -3,28 +3,22 @@ def three_sum(arr, target=0):
     # sorting the arr so the search becomes easy
     sorted_arr = sorted(arr)
     for ele in range(len(sorted_arr) - 2):
-        if (ele == 0 or (ele > 0 and sorted_arr[ele] != sorted_arr[ele - 1])):
+        if ele == 0 or (ele > 0 and sorted_arr[ele] != sorted_arr[ele - 1]):
 
             low = ele + 1
             high = len(sorted_arr) - 1
 
             sum_to_get = target - sorted_arr[ele]
-            while(low < high):
-                if (sorted_arr[low] + sorted_arr[high] == sum_to_get):
-                    output.append(
-                        [
-                            sorted_arr[ele],
-                            sorted_arr[low],
-                            sorted_arr[high]
-                        ]
-                    )
-                    while(low < high and sorted_arr[low] == sorted_arr[low + 1]):
+            while low < high:
+                if sorted_arr[low] + sorted_arr[high] == sum_to_get:
+                    output.append([sorted_arr[ele], sorted_arr[low], sorted_arr[high]])
+                    while low < high and sorted_arr[low] == sorted_arr[low + 1]:
                         low += 1
-                    while(low < high and sorted_arr[high] == sorted_arr[high - 1]):
+                    while low < high and sorted_arr[high] == sorted_arr[high - 1]:
                         high -= 1
                     low += 1
                     high -= 1
-                elif (sorted_arr[low] + sorted_arr[high] > sum_to_get):
+                elif sorted_arr[low] + sorted_arr[high] > sum_to_get:
                     high -= 1
                 else:
                     low += 1
@@ -53,13 +47,13 @@ def three_sum_closest(arr, target=1):
         # based on the number of integers
         low = ele + 1
         high = len(sorted_arr) - 1
-        while(low < high):
+        while low < high:
             total = sorted_arr[ele] + sorted_arr[low] + sorted_arr[high]
             comb_sum_set.add(total)
 
-            while(low < high and sorted_arr[low] == sorted_arr[low + 1]):
+            while low < high and sorted_arr[low] == sorted_arr[low + 1]:
                 low += 1
-            while(low < high and sorted_arr[high] == sorted_arr[high - 1]):
+            while low < high and sorted_arr[high] == sorted_arr[high - 1]:
                 high -= 1
 
             low += 1
@@ -67,6 +61,7 @@ def three_sum_closest(arr, target=1):
 
     # after getting the Combinal Sum Set, find the intervals between the numbers in set and target
     import math
+
     min = math.inf
     sum_scale = {}
 
@@ -92,7 +87,7 @@ def sum_of_three_closest(arr, target=1):
     sorted_arr_len = len(sorted_arr)
     result = sorted_arr[0] + sorted_arr[1] + sorted_arr[sorted_arr_len - 1]
     for i in range(sorted_arr_len):
-        j, k = i+1, sorted_arr_len - 1
+        j, k = i + 1, sorted_arr_len - 1
         while j < k:
             current = sorted_arr[i] + sorted_arr[j] + sorted_arr[k]
             if current == target:
