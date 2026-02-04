@@ -1,4 +1,4 @@
-points = [[18, 11, 19], [4, 13, 7], [1, 8, 13]]
+points = [[100, 20, 50, 70], [70, 20, 50, 100], [20, 70, 50, 100], [50, 20, 70, 100]]
 
 
 def tabulation_f(day):
@@ -20,7 +20,7 @@ def tabulation_f(day):
     return dp[total_no_rows - 1][3]
 
 
-def recursive_f(day, last, memoization_array):
+def recursive_dp(day, last, memoization_array):
     """
     -) base case that stops the execution
     -) only executes when it has reached the last array for processing. here, last array can be first or last one depending on the approach followed (Top-Down or Bottom-Up)
@@ -50,11 +50,26 @@ def recursive_f(day, last, memoization_array):
     return memoization_array[day][last]
 
 
+def recursive_f(day, last):
+    if day == 0:
+        maxi = 0
+        for task in range(4):
+            if task != last:
+                maxi = max(maxi, points[0][task])
+        return maxi
+    maxi = 0
+    for task in range(4):
+        if task != last:
+            point = points[day][task] + recursive_f(day - 1, task)
+            maxi = max(maxi, point)
+    return maxi
+
+
 def main():
     dp = [[-1] * 4] * 4
     total_no_rows = len(points)
     # passing 3 for the inital run
-    return recursive_f(total_no_rows - 1, 3, memoization_array=dp)
+    return recursive_f(total_no_rows - 1, 4)
 
 
 print(main())
